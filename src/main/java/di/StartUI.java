@@ -1,5 +1,6 @@
 package di;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -16,16 +17,13 @@ public class StartUI {
     /**
      * Store
      */
+    @Autowired
     private Store store;
     /**
      * ConsoleInput
      */
+    @Autowired
     private ConsoleInput consoleInput;
-
-    public StartUI(Store store, ConsoleInput consoleInput) {
-        this.store = store;
-        this.consoleInput = consoleInput;
-    }
 
     /**
      * Method add value to store
