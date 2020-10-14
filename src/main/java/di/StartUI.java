@@ -1,5 +1,7 @@
 package di;
 
+import org.springframework.stereotype.Component;
+
 import java.io.IOException;
 
 /**
@@ -9,6 +11,7 @@ import java.io.IOException;
  * @version 1.0
  * @since 14.10.2020
  */
+@Component
 public class StartUI {
     /**
      * Store

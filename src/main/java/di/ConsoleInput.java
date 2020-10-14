@@ -1,5 +1,7 @@
 package di;
 
+import org.springframework.stereotype.Component;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,6 +13,7 @@ import java.io.InputStreamReader;
  * @version 1.0
  * @since 14.10.2020
  */
+@Component
 public class ConsoleInput {
     /**
      * Method of enter message from console
