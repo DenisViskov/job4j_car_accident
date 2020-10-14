@@ -7,13 +7,23 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Class is an example of context
+ *
  * @author Денис Висков
  * @version 1.0
  * @since 14.10.2020
  */
 public class Context {
+    /**
+     * Map of objects
+     */
     private Map<String, Object> els = new HashMap<String, Object>();
 
+    /**
+     * Method of registration class
+     *
+     * @param cl
+     */
     public void reg(Class cl) {
         Constructor[] constructors = cl.getDeclaredConstructors();
         if (constructors.length > 1) {
@@ -34,6 +44,13 @@ public class Context {
         }
     }
 
+    /**
+     * Method return instance by given class
+     *
+     * @param inst
+     * @param <T>
+     * @return T
+     */
     public <T> T get(Class<T> inst) {
         return (T) els.get(inst.getCanonicalName());
     }
