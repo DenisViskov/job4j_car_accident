@@ -24,10 +24,20 @@
 </head>
 <body>
 <table class="table table-striped">
-    <c:forEach var="el" items="${user}">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Text</th>
+        <th scope="col">Address</th>
+    </tr>
+    </thead>
+    <c:forEach var="el" items="${accidents}">
         <tr>
-            <td>Hello:</td>
-            <td><c:out value="${el}"/></td>
+            <td><c:out value="${el.id}"/></td>
+            <td><c:out value="${el.name}"/></td>
+            <td><c:out value="${el.text}"/></td>
+            <td><c:out value="${el.address}"/></td>
         </tr>
     </c:forEach>
 </table>

@@ -1,10 +1,14 @@
 package accident.control;
 
+import accident.model.Accident;
+import accident.repository.AccidentMem;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Денис Висков
@@ -15,8 +19,9 @@ import java.util.List;
 public class IndexControl {
     @GetMapping("/")
     public String index(Model model) {
-        List<String> list = List.of("Petr Arsentev", "Denis Viskov");
-        model.addAttribute("user", list);
+        AccidentMem mem = new AccidentMem();
+        Set<Accident> list = new HashSet<>(mem.getAccidents().values());
+        model.addAttribute("accidents", list);
         return "index";
     }
 }
