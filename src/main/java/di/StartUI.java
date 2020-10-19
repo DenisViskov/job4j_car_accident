@@ -1,6 +1,7 @@
 package di;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.io.IOException;
  * @since 14.10.2020
  */
 @Component
+@Scope("prototype")
 public class StartUI {
     /**
      * Store
