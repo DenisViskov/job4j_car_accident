@@ -4,6 +4,7 @@ import accident.model.Accident;
 import accident.repository.AccidentMem;
 import accident.repository.Store;
 import accident.service.RepositoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class AccidentControl {
+    @Autowired
     private final RepositoryService service;
 
     public AccidentControl(RepositoryService service) {

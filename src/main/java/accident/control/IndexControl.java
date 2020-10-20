@@ -21,6 +21,7 @@ import java.util.Set;
  */
 @Controller
 public class IndexControl {
+    @Autowired
     private final RepositoryService service;
 
     public IndexControl(RepositoryService service) {

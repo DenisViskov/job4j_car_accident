@@ -41,7 +41,7 @@
 <body class="container">
 <form action="<c:url value='/editAccident'/>" method='POST'>
     <div class="form-group">
-        <label for="idSelect">Example select</label>
+        <label for="idSelect">Select id</label>
         <select class="form-control" name="id" id="idSelect">
             <c:forEach var="el" items="${accidents}">
                 <option><c:out value="${el.id}"/></option>
@@ -62,7 +62,7 @@
         <label for="addressAccident">Edit Address accident:</label>
         <input type="text" class="form-control" name="address" id="addressAccident" aria-describedby="addressHelp"
                placeholder="Enter address">
-        <small id="addressHelp" class="form-text text-muted">Enter please address of accident.</small>
+        <small id="addressHelp" class="form-text text-muted">Please enter address of accident.</small>
     </div>
     <input type="submit" class="btn btn-primary" value="Update"/>
 </form>
