@@ -1,6 +1,7 @@
 package accident.repository;
 
 import accident.model.Accident;
+import accident.model.AccidentType;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -22,15 +23,18 @@ public class AccidentMem implements Store<Accident> {
         Accident first = new Accident(0,
                 "Destroyed two cars",
                 "There are people injured",
-                "5th avenue");
+                "5th avenue",
+                AccidentType.of(0, "Two cars"));
         Accident second = new Accident(1,
                 "Destroyed three cars",
                 "There are people injured",
-                "8th avenue");
+                "8th avenue",
+                AccidentType.of(1, "Car and human"));
         Accident third = new Accident(2,
                 "Destroyed three cars",
                 "There are people injured",
-                "10th avenue");
+                "10th avenue",
+                AccidentType.of(2, "Car and bike"));
         accidents.put(first.getId(), first);
         accidents.put(second.getId(), second);
         accidents.put(third.getId(), third);
@@ -39,7 +43,7 @@ public class AccidentMem implements Store<Accident> {
     @Override
     public void update(Accident some) {
         if (accidents.containsKey(some.getId())) {
-            accidents.replace(some.getId(),some);
+            accidents.replace(some.getId(), some);
         }
     }
 
