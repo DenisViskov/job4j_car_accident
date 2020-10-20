@@ -21,18 +21,42 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <style>
+        .container {
+            padding: 50px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            background: white;
+            outline: 2px solid #000;
+            border-radius: 10px;
+            text-align: center;
+        }
+    </style>
 </head>
-<body>
-<form  action="<c:url value='/save'/>" method='POST'>
-    <table>
-        <tr>
-            <td>Название:</td>
-            <td><input type='text' name='name'></td>
-        </tr>
-        <tr>
-            <td colspan='2'><input name="submit" type="submit" value="Сохранить" /></td>
-        </tr>
-    </table>
+<body class="container">
+<form action="<c:url value='/save'/>" method='POST'>
+    <div class="form-group">
+        <label for="nameAccident">Name accident:</label>
+        <input type="text" class="form-control" name="name" id="nameAccident" aria-describedby="accidentHelp"
+               placeholder="Enter name">
+        <small id="accidentHelp" class="form-text text-muted">Please enter name of accident.</small>
+    </div>
+    <div class="form-group">
+        <label for="descriptionArea">Description:</label>
+        <textarea class="form-control" name="text" id="descriptionArea" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="addressAccident">Address accident:</label>
+        <input type="text" class="form-control" name="address" id="addressAccident" aria-describedby="addressHelp"
+               placeholder="Enter address">
+        <small id="addressHelp" class="form-text text-muted">Enter please address of accident.</small>
+    </div>
+    <input type="submit" class="btn btn-primary">Submit</input>
 </form>
 </body>
 </html>
