@@ -39,15 +39,7 @@
     </style>
 </head>
 <body class="container">
-<form action="<c:url value='/editAccident'/>" method='POST'>
-    <div class="form-group">
-        <label for="idSelect">Select id</label>
-        <select class="form-control" name="id" id="idSelect">
-            <c:forEach var="el" items="${accidents}">
-                <option><c:out value="${el.id}"/></option>
-            </c:forEach>
-        </select>
-    </div>
+<form action="<c:url value='/editAccident?id=${accident.id}'/>" method='POST'>
     <div class="form-group">
         <label for="nameAccident">Edit Name accident:</label>
         <input type="text" class="form-control" name="name" id="nameAccident" aria-describedby="accidentHelp"
