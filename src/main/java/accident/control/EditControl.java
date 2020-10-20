@@ -23,12 +23,6 @@ public class EditControl {
         this.service = service;
     }
 
-    @GetMapping("/edit")
-    public String edit(Model model) {
-        model.addAttribute("accidents", service.getAll());
-        return "accident/edit";
-    }
-
     @PostMapping("/editAccident")
     public String editAccident(@ModelAttribute Accident accident) {
         service.update(accident);

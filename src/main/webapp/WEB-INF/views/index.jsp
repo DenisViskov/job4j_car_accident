@@ -23,8 +23,7 @@
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-<a href="<c:url value='/create'/>">Add accident</a> |
-<a href="<c:url value='/edit'/>">Edit accident</a>
+<a href="<c:url value='/create'/>">Add accident</a>
 <table class="table table-striped">
     <thead class="thead-dark">
     <tr>
@@ -32,6 +31,7 @@
         <th scope="col">Name</th>
         <th scope="col">Text</th>
         <th scope="col">Address</th>
+        <th scope="col">Edit</th>
     </tr>
     </thead>
     <c:forEach var="el" items="${accidents}">
@@ -40,6 +40,7 @@
             <td><c:out value="${el.name}"/></td>
             <td><c:out value="${el.text}"/></td>
             <td><c:out value="${el.address}"/></td>
+            <td><a href="<c:url value='/update?id=${el.id}'/>">edit accident</a></td>
         </tr>
     </c:forEach>
 </table>
