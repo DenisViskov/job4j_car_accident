@@ -39,7 +39,7 @@ public class AccidentMem implements Store<Accident> {
     @Override
     public void update(Accident some) {
         if (accidents.containsKey(some.getId())) {
-            add(some);
+            accidents.replace(some.getId(),some);
         }
     }
 

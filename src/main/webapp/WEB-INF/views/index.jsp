@@ -23,7 +23,8 @@
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-<a href="<c:url value='/create'/>">Добавить инцидент</a>
+<a href="<c:url value='/create'/>">Add accident</a>
+<a href="<c:url value='/edit'/>">Edit accident</a>
 <table class="table table-striped">
     <thead class="thead-dark">
     <tr>

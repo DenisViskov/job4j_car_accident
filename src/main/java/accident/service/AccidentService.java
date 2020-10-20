@@ -37,4 +37,9 @@ public class AccidentService implements RepositoryService<Accident> {
     public void save(Accident some) {
         store.add(some);
     }
+
+    @Override
+    public void update(Accident some) {
+        store.update(some);
+    }
 }

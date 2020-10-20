@@ -14,4 +14,5 @@ public interface RepositoryService<V> {
     Optional<V> findById(int id);
     List<V> getAll();
     void save(V some);
+    void update(V some);
 }
