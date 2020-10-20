@@ -2,6 +2,10 @@ package accident.control;
 
 import accident.model.Accident;
 import accident.repository.AccidentMem;
+import accident.service.AccidentService;
+import accident.service.RepositoryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,11 +21,15 @@ import java.util.Set;
  */
 @Controller
 public class IndexControl {
+    private final RepositoryService service;
+
+    public IndexControl(RepositoryService service) {
+        this.service = service;
+    }
+
     @GetMapping("/")
     public String index(Model model) {
-        AccidentMem mem = new AccidentMem();
-        Set<Accident> list = new HashSet<>(mem.getAccidents().values());
-        model.addAttribute("accidents", list);
+        model.addAttribute("accidents", service.getAll());
         return "index";
     }
 }
