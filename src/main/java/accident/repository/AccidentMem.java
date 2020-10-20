@@ -39,12 +39,13 @@ public class AccidentMem implements Store<Accident> {
     @Override
     public void update(Accident some) {
         if (accidents.containsKey(some.getId())) {
-            add(some);
+            accidents.replace(some.getId(),some);
         }
     }
 
     @Override
     public Accident add(Accident some) {
+        some.setId(accidents.size());
         accidents.put(some.getId(), some);
         return some;
     }
