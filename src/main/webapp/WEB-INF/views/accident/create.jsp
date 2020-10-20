@@ -56,7 +56,7 @@
                placeholder="Enter address">
         <small id="addressHelp" class="form-text text-muted">Enter please address of accident.</small>
     </div>
-    <input type="submit" class="btn btn-primary">Submit</input>
+    <input type="submit" class="btn btn-primary" value="Save"/>
 </form>
 </body>
 </html>

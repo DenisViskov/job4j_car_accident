@@ -45,6 +45,7 @@ public class AccidentMem implements Store<Accident> {
 
     @Override
     public Accident add(Accident some) {
+        some.setId(accidents.size());
         accidents.put(some.getId(), some);
         return some;
     }
