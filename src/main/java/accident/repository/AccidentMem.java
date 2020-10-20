@@ -4,8 +4,10 @@ import accident.model.Accident;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @author Денис Висков
@@ -13,7 +15,7 @@ import java.util.Objects;
  * @since 19.10.2020
  */
 @Repository
-public class AccidentMem {
+public class AccidentMem implements Store<Accident> {
     private final Map<Integer, Accident> accidents = new HashMap<>();
 
     public AccidentMem() {
@@ -29,29 +31,28 @@ public class AccidentMem {
                 "Destroyed three cars",
                 "There are people injured",
                 "10th avenue");
-        accidents.put(first.getId(),first);
-        accidents.put(second.getId(),second);
-        accidents.put(third.getId(),third);
-    }
-
-    public Map<Integer, Accident> getAccidents() {
-        return accidents;
-    }
-
-    public void addAccident(Accident accident) {
-        accidents.put(accident.getId(), accident);
+        accidents.put(first.getId(), first);
+        accidents.put(second.getId(), second);
+        accidents.put(third.getId(), third);
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AccidentMem that = (AccidentMem) o;
-        return Objects.equals(accidents, that.accidents);
+    public void update(Accident some) {
+        if (accidents.containsKey(some.getId())) {
+            add(some);
+        }
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(accidents);
+    public Accident add(Accident some) {
+        accidents.put(some.getId(), some);
+        return some;
+    }
+
+    @Override
+    public List<Accident> findAll() {
+        return accidents.values()
+                .stream()
+                .collect(Collectors.toList());
     }
 }
