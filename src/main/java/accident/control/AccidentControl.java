@@ -1,6 +1,7 @@
 package accident.control;
 
 import accident.model.Accident;
+import accident.model.AccidentType;
 import accident.repository.AccidentMem;
 import accident.repository.Store;
 import accident.service.RepositoryService;
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Денис Висков
@@ -27,7 +31,9 @@ public class AccidentControl {
     }
 
     @GetMapping("/create")
-    public String create() {
+    public String create(Model model) {
+        List<AccidentType> types = service.getAccidentTypes();
+        model.addAttribute("types", types);
         return "accident/create";
     }
 

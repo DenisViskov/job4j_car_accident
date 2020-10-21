@@ -56,6 +56,14 @@
                placeholder="Enter address">
         <small id="addressHelp" class="form-text text-muted">Enter please address of accident.</small>
     </div>
+    <div class="form-group">
+        <label for="typeSelect">Select type</label>
+        <select class="form-control" name="type.id" id="typeSelect">
+            <c:forEach var="type" items="${types}">
+                <option value="${type.id}">${type.name}</option>
+            </c:forEach>
+        </select>
+    </div>
     <input type="submit" class="btn btn-primary" value="Save"/>
 </form>
 </body>
