@@ -2,10 +2,13 @@ package accident.service;
 
 import accident.model.Accident;
 import accident.model.AccidentType;
+import accident.model.Rule;
 import accident.repository.Store;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,41 +18,92 @@ import java.util.Optional;
  * @since 19.10.2020
  */
 @Service
-public class AccidentService implements RepositoryService<Accident, AccidentType> {
-    @Autowired
-    private final Store store;
+public class AccidentService implements RepositoryService<Accident, AccidentType, Rule> {
 
-    public AccidentService(Store store) {
-        this.store = store;
+    private final Store storeAccident;
+    private final Store storeTypes;
+    private final Store storeRules;
+
+    @Autowired
+    public AccidentService(@Qualifier("accidentMem") Store storeAccident,
+                           @Qualifier("accidentTypesMem") Store storeTypes,
+                           @Qualifier("accidentRulesMem") Store storeRules) {
+        this.storeAccident = storeAccident;
+        this.storeTypes = storeTypes;
+        this.storeRules = storeRules;
     }
 
     @Override
-    public Optional<Accident> findById(int id) {
-        List<Accident> accidents = store.findAll();
+    public Optional<Accident> findByIdAccident(int id) {
+        List<Accident> accidents = storeAccident.findAll();
         return accidents.stream()
                 .filter(accident -> accident.getId() == id)
                 .findFirst();
     }
 
     @Override
-    public List<Accident> getAll() {
-        return store.findAll();
+    public List<Accident> getAllAccidents() {
+        return storeAccident.findAll();
     }
 
     @Override
-    public void save(Accident some) {
-        List<AccidentType> accidentTypes = getAccidentTypes();
+    public void saveAccident(Accident some) {
+        List<AccidentType> accidentTypes = getAllTypes();
         some.setType(accidentTypes.get(some.getType().getId()));
-        store.add(some);
+        List<Rule> tmp = List.copyOf(some.getRules());
+        some.getRules().clear();
+        tmp.forEach(Rule -> some.addRule(getAllRules().get(Rule.getId())));
+        storeAccident.add(some);
     }
 
     @Override
-    public void update(Accident some) {
-        store.update(some);
+    public void updateAccident(Accident some) {
+        storeAccident.update(some);
     }
 
     @Override
-    public List<AccidentType> getAccidentTypes() {
-        return store.getAccidentTypes();
+    public Optional<AccidentType> findByIdType(int id) {
+        List<AccidentType> types = storeTypes.findAll();
+        return types.stream()
+                .filter(type -> type.getId() == id)
+                .findFirst();
+    }
+
+    @Override
+    public List<AccidentType> getAllTypes() {
+        return storeTypes.findAll();
+    }
+
+    @Override
+    public void saveType(AccidentType some) {
+        storeTypes.add(some);
+    }
+
+    @Override
+    public void updateType(AccidentType some) {
+        storeTypes.update(some);
+    }
+
+    @Override
+    public Optional<Rule> findByIdRule(int id) {
+        List<Rule> rules = storeRules.findAll();
+        return rules.stream()
+                .filter(rule -> rule.getId() == id)
+                .findFirst();
+    }
+
+    @Override
+    public List<Rule> getAllRules() {
+        return storeRules.findAll();
+    }
+
+    @Override
+    public void saveRule(Rule some) {
+        storeRules.add(some);
+    }
+
+    @Override
+    public void updateRule(Rule some) {
+        storeRules.update(some);
     }
 }

@@ -64,6 +64,14 @@
             </c:forEach>
         </select>
     </div>
+    <div class="form-group">
+        <label for="articleSelect">Select article</label>
+        <select class="form-control" name="rIds" id="articleSelect" multiple>
+            <c:forEach var="rule" items="${rules}">
+                <option value="${rule.id}">${rule.name}</option>
+            </c:forEach>
+        </select>
+    </div>
     <input type="submit" class="btn btn-primary" value="Save"/>
 </form>
 </body>
