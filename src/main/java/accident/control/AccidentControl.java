@@ -32,10 +32,7 @@ public class AccidentControl {
 
     @GetMapping("/create")
     public String create(Model model) {
-        List<AccidentType> types = new ArrayList<>();
-        types.add(AccidentType.of(1, "Two cars"));
-        types.add(AccidentType.of(2, "Car and human"));
-        types.add(AccidentType.of(3, "Car and bike"));
+        List<AccidentType> types = service.getAccidentTypes();
         model.addAttribute("types", types);
         return "accident/create";
     }

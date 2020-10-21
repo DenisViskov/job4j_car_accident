@@ -16,25 +16,28 @@ import java.util.stream.Collectors;
  * @since 19.10.2020
  */
 @Repository
-public class AccidentMem implements Store<Accident> {
+public class AccidentMem implements Store<Accident, AccidentType> {
     private final Map<Integer, Accident> accidents = new HashMap<>();
+    private final List<AccidentType> accidentTypes = List.of(AccidentType.of(0, "Two cars"),
+            AccidentType.of(1, "Car and human"),
+            AccidentType.of(2, "Car and bike"));
 
     public AccidentMem() {
         Accident first = new Accident(0,
                 "Destroyed two cars",
                 "There are people injured",
                 "5th avenue",
-                AccidentType.of(0, "Two cars"));
+                accidentTypes.get(0));
         Accident second = new Accident(1,
                 "Destroyed three cars",
                 "There are people injured",
                 "8th avenue",
-                AccidentType.of(1, "Car and human"));
+                accidentTypes.get(1));
         Accident third = new Accident(2,
                 "Destroyed three cars",
                 "There are people injured",
                 "10th avenue",
-                AccidentType.of(2, "Car and bike"));
+                accidentTypes.get(2));
         accidents.put(first.getId(), first);
         accidents.put(second.getId(), second);
         accidents.put(third.getId(), third);
@@ -59,5 +62,10 @@ public class AccidentMem implements Store<Accident> {
         return accidents.values()
                 .stream()
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AccidentType> getAccidentTypes() {
+        return accidentTypes;
     }
 }

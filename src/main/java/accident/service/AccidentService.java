@@ -1,6 +1,7 @@
 package accident.service;
 
 import accident.model.Accident;
+import accident.model.AccidentType;
 import accident.repository.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ import java.util.Optional;
  * @since 19.10.2020
  */
 @Service
-public class AccidentService implements RepositoryService<Accident> {
+public class AccidentService implements RepositoryService<Accident, AccidentType> {
     @Autowired
     private final Store store;
 
@@ -37,11 +38,18 @@ public class AccidentService implements RepositoryService<Accident> {
 
     @Override
     public void save(Accident some) {
+        List<AccidentType> accidentTypes = getAccidentTypes();
+        some.setType(accidentTypes.get(some.getType().getId()));
         store.add(some);
     }
 
     @Override
     public void update(Accident some) {
         store.update(some);
+    }
+
+    @Override
+    public List<AccidentType> getAccidentTypes() {
+        return store.getAccidentTypes();
     }
 }

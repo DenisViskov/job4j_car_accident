@@ -10,9 +10,14 @@ import java.util.Optional;
  * @version 1.0
  * @since 20.10.2020
  */
-public interface RepositoryService<V> {
+public interface RepositoryService<V, T> {
     Optional<V> findById(int id);
+
     List<V> getAll();
+
     void save(V some);
+
     void update(V some);
+
+    List<T> getAccidentTypes();
 }
