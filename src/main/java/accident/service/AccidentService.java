@@ -52,7 +52,7 @@ public class AccidentService implements RepositoryService<Accident, AccidentType
         some.setType(accidentTypes.get(some.getType().getId()));
         List<Rule> tmp = List.copyOf(some.getRules());
         some.getRules().clear();
-        tmp.forEach(Rule -> some.addRule(getAllRules().get(Rule.getId())));
+        tmp.forEach(Rule -> some.addRule(findByIdRule(Rule.getId()).get()));
         storeAccident.add(some);
     }
 
