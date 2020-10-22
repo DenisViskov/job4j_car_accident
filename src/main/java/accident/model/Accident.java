@@ -1,6 +1,8 @@
 package accident.model;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * @author Денис Висков
@@ -13,8 +15,10 @@ public class Accident {
     private String text;
     private String address;
     private AccidentType type;
+    private Set<Rule> rules;
 
     public Accident() {
+        rules = new HashSet<>();
     }
 
     public Accident(int id, String name, String text, String address, AccidentType type) {
@@ -23,6 +27,11 @@ public class Accident {
         this.text = text;
         this.address = address;
         this.type = type;
+        this.rules = new HashSet<>();
+    }
+
+    public void addRule(Rule rule) {
+        rules.add(rule);
     }
 
     public int getId() {
@@ -65,6 +74,14 @@ public class Accident {
         this.type = type;
     }
 
+    public Set<Rule> getRules() {
+        return rules;
+    }
+
+    public void setRules(Set<Rule> rules) {
+        this.rules = rules;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -74,11 +91,12 @@ public class Accident {
                 Objects.equals(name, accident.name) &&
                 Objects.equals(text, accident.text) &&
                 Objects.equals(address, accident.address) &&
-                Objects.equals(type, accident.type);
+                Objects.equals(type, accident.type) &&
+                Objects.equals(rules, accident.rules);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, text, address, type);
+        return Objects.hash(id, name, text, address, type, rules);
     }
 }
