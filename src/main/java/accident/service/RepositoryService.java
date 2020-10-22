@@ -15,7 +15,7 @@ public interface RepositoryService<V, T, K> {
 
     List<V> getAllAccidents();
 
-    void saveAccident(V some);
+    void saveAccident(V some, String[] ids);
 
     void updateAccident(V some);
 

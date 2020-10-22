@@ -47,12 +47,13 @@ public class AccidentService implements RepositoryService<Accident, AccidentType
     }
 
     @Override
-    public void saveAccident(Accident some) {
-        List<AccidentType> accidentTypes = getAllTypes();
-        some.setType(accidentTypes.get(some.getType().getId()));
-        List<Rule> tmp = List.copyOf(some.getRules());
-        some.getRules().clear();
-        tmp.forEach(Rule -> some.addRule(findByIdRule(Rule.getId()).get()));
+    public void saveAccident(Accident some, String[] ids) {
+        some.setType(findByIdType(some.getType()
+                .getId())
+                .get());
+        Arrays.stream(ids)
+                .forEach(id -> some.addRule(findByIdRule(Integer.valueOf(id))
+                        .get()));
         storeAccident.add(some);
     }
 
