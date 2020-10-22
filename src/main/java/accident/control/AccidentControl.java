@@ -23,9 +23,10 @@ import java.util.List;
  */
 @Controller
 public class AccidentControl {
-    @Autowired
+
     private final RepositoryService service;
 
+    @Autowired
     public AccidentControl(RepositoryService service) {
         this.service = service;
     }
