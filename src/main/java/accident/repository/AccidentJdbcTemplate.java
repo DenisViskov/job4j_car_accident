@@ -11,7 +11,7 @@ import java.util.List;
  * @version 1.0
  * @since 23.10.2020
  */
-@Repository
+//@Repository
 public class AccidentJdbcTemplate implements Store<Accident> {
     private final JdbcTemplate jdbc;
 

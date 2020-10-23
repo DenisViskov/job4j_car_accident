@@ -29,18 +29,18 @@
     <tr>
         <th scope="col">#</th>
         <th scope="col">Name</th>
-        <th scope="col">Text</th>
-        <th scope="col">Address</th>
-        <th scope="col">Edit</th>
+<%--        <th scope="col">Text</th>--%>
+<%--        <th scope="col">Address</th>--%>
+<%--        <th scope="col">Edit</th>--%>
     </tr>
     </thead>
     <c:forEach var="el" items="${accidents}">
         <tr>
             <td><c:out value="${el.id}"/></td>
             <td><c:out value="${el.name}"/></td>
-            <td><c:out value="${el.text}"/></td>
+            <%--<td><c:out value="${el.text}"/></td>
             <td><c:out value="${el.address}"/></td>
-            <td><a href="<c:url value='/update?id=${el.id}'/>">edit accident</a></td>
+            <td><a href="<c:url value='/update?id=${el.id}'/>">edit accident</a></td>--%>
         </tr>
     </c:forEach>
 </table>
