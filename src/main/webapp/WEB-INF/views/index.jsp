@@ -24,6 +24,9 @@
 </head>
 <body>
 <a href="<c:url value='/create'/>">Add accident</a>
+<div>
+    Login as : ${user.username}
+</div>
 <table class="table table-striped">
     <thead class="thead-dark">
     <tr>
